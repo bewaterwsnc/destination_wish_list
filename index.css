@@ -1,0 +1,24 @@
+.display-4{
+    text-align: center;
+}
+
+.lead{
+    text-align: center;
+}
+
+.details_form{
+    padding: 0rem 15rem; 
+}
+
+
+.dest_details{
+    padding: 0rem 15rem;
+}
+
+.submitbutton{
+    width: 100%;
+}
+
+.destination{
+    text-align: center;
+}
