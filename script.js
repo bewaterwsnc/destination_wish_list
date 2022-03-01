@@ -46,3 +46,92 @@
             document.querySelector("#card_stage")
                     .appendChild(displayCard)
         }
+        /*function 3: generate a new card with form items listed and formatted
+                    */
+        function generateNewCard(destination, location, photoSrc, description){
+
+            //create main div element aka the card body - set the style (css) attributes
+            var card = document.createElement("div");
+                card.setAttribute("class", "card");
+                card.style.margin("16px");
+                card.style.width("18rem");
+                card.style.height("fit-content");
+                card.style.backgroundColor("#6c757d");
+                card.style.boxShadow("5px 3px 3px yellow");
+        }
+
+            //create card body w/ form details
+            var fullCard = document.createElement("div");
+                fullCard.setAttribute("class", "full-card");
+
+            //destination --> create dest element --> destination added to card
+            var cardDest = document.createElement("h4");
+                cardDest.setAttribute("class", "cardDest");
+                cardDest.innerText= destination;
+                fullCard.appendChild(cardDest);
+
+            //location --> create location element --> location added to card
+            var cardGeoLo = document.createElement("h5");
+                cardGeoLo.setAttribute("class", "cardGeoLo mb-2 text-muted");
+                cardGeoLo.innerText= location;
+                fullCard.appendChild(cardGeoLo);
+
+            //photoSrc -->  create img element --> img added to card
+            var cardImg = document.createElement("img");
+                cardImg.setAttribute("class", "card-img-top");
+                cardImg.setAttribute("alt", destination);
+                    //create photo placeholder
+                    var holder = "https://www.movaglobes.com/blog/wp-content/uploads/2018/01/MOVA-Buying-Guide1200x600.jpg";
+                    
+                    /*if user puts in url of zero characters (null) set placeholder
+                    else set user's url*/
+                    if(photoSrc.length === 0) {
+                        cardImg.setAttribute("src", holder);
+                    } else {
+                        cardImg.setAttribute("src", photoSrc);
+                    }
+                card.appendChild(cardImg); 
+
+            //description --> create description element --> description added to card
+            if(description.length !== 0){
+                var cardDetails = document.createElement("p");
+                    cardDetails.setAttribute("class", "card-details");
+                    cardDetails.innerText = description;
+                    fullCard.appendChild(cardDetails);
+            }   
+            
+            //create container for edit & delete card buttons
+            var buttonContainer = document.createElement("div");
+                buttonContainer.setAttribute("class", "button-container");
+
+                var editButton = document.createElement("button");
+                    editButton.setAttribute("class", "btn btn-warning");
+                    editButton.innerText = "Edit";
+                    editButton.addEventListener("click", editEntry);
+                    buttonContainer.appendChild(editButton);
+
+                var removeButton = document.createElement("button");
+                    removeButton.setAttribute("class, btn btn-danger");
+                    removeButton.innerText = "Remove";
+                    removeButton.addEventListener("click", removeEntry);
+            
+            /* add remove and edit buttons to card */
+            buttonContainer.appendChild(removeButton)
+            buttonContainer.appendChild(editButton);
+            fullCard.appendChild(buttonContainer);
+
+            card.appendChild(fullCard)
+            
+            return card;
+
+       function editEntry(e) {
+        //edit code
+       }
+
+       function removeEntry(e) {
+           //removal code
+
+       }
+                
+
+        
