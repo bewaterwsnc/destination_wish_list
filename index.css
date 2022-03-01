@@ -20,3 +20,9 @@
 #staging{
     text-align: center;
 }
+
+#card_stage{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
