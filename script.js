@@ -124,17 +124,24 @@
             return card;
 
        function editEntry(e) {
+        
+        /*call card body from card container 2x up DOM
+            destination name first child-element
+            location name second child element*/
         let cardMain = e.target.parentElement.parentElement;
         let cardName = cardMain.children[0];
         let cardLocation = cardMain.children[1];
 
+        /*img component update*/
         let card = cardMain.parentElement;
         let photo = card.children[0]
 
+        /*add updated values to card*/
         let newCardName = window.prompt("Enter new destination name: ");
         let newCardLocation = window.prompt("Enter new location: ");
         let newPhoto = window.prompt("Enter new photo URL: ");
 
+            /*set updated values*/
             if(newCardName.length > 0) {
                 cardName.innerText = newCardName;
             }
@@ -148,9 +155,13 @@
        }
 
        function removeEntry(e) {
-           //removal code
 
-       }
+        /*call card body from card container 2x up DOM*/
+         let cardMain = e.target.parentElement.parentElement;
+         let card = cardMain.parentElement;
+         card.remove();
+
+     }
                 
 
         
