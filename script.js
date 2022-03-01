@@ -1,5 +1,5 @@
     //function 1: clears form
-    function clearForm(form) {
+    let clearForm = (form) => {
         //iterate full form & set values to null 
         for (var i = 0; i < form.length; i++) {
             form.elements[i].value = "";
@@ -13,7 +13,7 @@
         /*function 2: submit form data via eventListener (submitHandler)
           clear form / create event variables / create card / change title of card display area
           if new list populates / add card to staged area */
-        function submitHandler(e) {
+        let submitHandler = (e) => {
 
             //clears form -- (f1)
             clearForm(e.target);
@@ -48,7 +48,7 @@
         }
         /*function 3: generate a new card with form items listed and formatted
                     */
-        function generateNewCard(destination_name, location_name, photo, description){
+        let generateNewCard = (destination_name, location_name, photo, description) => {
 
             //create main div element aka the card body - set the style (css) attributes
             let card = document.createElement("div");
