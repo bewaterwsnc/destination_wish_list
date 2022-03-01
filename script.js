@@ -20,13 +20,13 @@
         
             //creating destination variables from each form line
                            //event.target-element-that-triggered-event's.value
-            const destName = e.target.elements["destination_name"].value;
-            const destLocation = e.target.elements["location_name"].value;
-            const destPhoto = e.target.elements["photo"].value;
-            const destDescription = e.target.elements["description"].value
+            let destName = e.target.elements["destination_name"].value;
+            let destLocation = e.target.elements["location_name"].value;
+            let destPhoto = e.target.elements["photo"].value;
+            let destDescription = e.target.elements["description"].value
     
             //store destination variables in a card
-            var displayCard = createDestCard(
+            let displayCard = createDestCard(
                 destName,
                 destLocation,
                 destPhoto,
@@ -34,11 +34,11 @@
             );
         
             //place card_stage in variable to allow title change for html line 47-48
-            var destCardContainer = document.querySelector("#card_stage");
+            let destinationCardContainer = document.querySelector("#card_stage");
         
             /*title change for "staging" - "ENTER DESTINATION DETAILS"
             if the container + is null, set new title to "My Wishlist" */
-            if (destCardContainer.children.length === 0) {
+            if (destinationCardContainer.children.length === 0) {
                 document.querySelector("#staging").innerHTML = "My Wishlist";
             } 
 
@@ -48,10 +48,10 @@
         }
         /*function 3: generate a new card with form items listed and formatted
                     */
-        function generateNewCard(destination, location, photoSrc, description){
+        function generateNewCard(destination_name, location_name, photo, description){
 
             //create main div element aka the card body - set the style (css) attributes
-            var card = document.createElement("div");
+            let card = document.createElement("div");
                 card.setAttribute("class", "card");
                 card.style.margin("16px");
                 card.style.width("18rem");
@@ -61,25 +61,25 @@
         }
 
             //create card body w/ form details
-            var fullCard = document.createElement("div");
-                fullCard.setAttribute("class", "full-card");
+            let cardMain = document.createElement("div");
+                cardMain.setAttribute("class", "full-card");
 
             //destination --> create dest element --> destination added to card
-            var cardDest = document.createElement("h4");
-                cardDest.setAttribute("class", "cardDest");
-                cardDest.innerText= destination;
-                fullCard.appendChild(cardDest);
+            let cardName = document.createElement("h4");
+                cardName.setAttribute("class", "cardDest");
+                cardName.innerText= destination_name;
+                cardMain.appendChild(cardName);
 
             //location --> create location element --> location added to card
-            var cardGeoLo = document.createElement("h5");
-                cardGeoLo.setAttribute("class", "cardGeoLo mb-2 text-muted");
-                cardGeoLo.innerText= location;
-                fullCard.appendChild(cardGeoLo);
+            let cardLocation = document.createElement("h5");
+                cardLocation.setAttribute("class", "cardLocation mb-2 text-muted");
+                cardLocation.innerText= location_name;
+                cardMain.appendChild(cardLocation);
 
             //photoSrc -->  create img element --> img added to card
-            var cardImg = document.createElement("img");
+            let cardImg = document.createElement("img");
                 cardImg.setAttribute("class", "card-img-top");
-                cardImg.setAttribute("alt", destination);
+                cardImg.setAttribute("alt", destination_location);
                     //create photo placeholder
                     var holder = "https://www.movaglobes.com/blog/wp-content/uploads/2018/01/MOVA-Buying-Guide1200x600.jpg";
                     
@@ -88,7 +88,7 @@
                     if(photoSrc.length === 0) {
                         cardImg.setAttribute("src", holder);
                     } else {
-                        cardImg.setAttribute("src", photoSrc);
+                        cardImg.setAttribute("src", photo);
                     }
                 card.appendChild(cardImg); 
 
@@ -97,35 +97,54 @@
                 var cardDetails = document.createElement("p");
                     cardDetails.setAttribute("class", "card-details");
                     cardDetails.innerText = description;
-                    fullCard.appendChild(cardDetails);
+                    cardMain.appendChild(cardDetails);
             }   
             
             //create container for edit & delete card buttons
-            var buttonContainer = document.createElement("div");
-                buttonContainer.setAttribute("class", "button-container");
+            let btnContainer = document.createElement("div");
+                btnContainer.setAttribute("class", "button-container");
 
-                var editButton = document.createElement("button");
+                let editButton = document.createElement("button");
                     editButton.setAttribute("class", "btn btn-warning");
                     editButton.innerText = "Edit";
                     editButton.addEventListener("click", editEntry);
-                    buttonContainer.appendChild(editButton);
+                    btnContainer.appendChild(editButton);
 
-                var removeButton = document.createElement("button");
+                let removeButton = document.createElement("button");
                     removeButton.setAttribute("class, btn btn-danger");
                     removeButton.innerText = "Remove";
                     removeButton.addEventListener("click", removeEntry);
             
             /* add remove and edit buttons to card */
-            buttonContainer.appendChild(removeButton)
-            buttonContainer.appendChild(editButton);
-            fullCard.appendChild(buttonContainer);
-
-            card.appendChild(fullCard)
+            btnContainer.appendChild(removeButton)
+            btnContainer.appendChild(editButton);
+            cardMain.appendChild(btnContainer);
+            card.appendChild(cardMain)
             
             return card;
 
        function editEntry(e) {
-        //edit code
+        let cardMain = e.target.parentElement.parentElement;
+        let cardName = cardMain.children[0];
+        let cardLocation = cardMain.children[1];
+
+        let card = cardMain.parentElement;
+        let photo = card.children[0]
+
+        let newCardName = window.prompt("Enter new destination name: ");
+        let newCardLocation = window.prompt("Enter new location: ");
+        let newPhoto = window.prompt("Enter new photo URL: ");
+
+            if(newCardName.length > 0) {
+                cardName.innerText = newCardName;
+            }
+
+            if(newCardLocation.length > 0) {
+                cardLocation.innerText = newCardLocation;
+            }
+            if(newPhoto.length > 0){
+                photo.setAttribute("src", newPhoto);
+            }
        }
 
        function removeEntry(e) {
