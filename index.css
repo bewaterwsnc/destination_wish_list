@@ -1,6 +1,4 @@
-.display-4{
-    text-align: center;
-}
+
 
 .lead{
     text-align: center;
@@ -19,6 +17,6 @@
     width: 100%;
 }
 
-.destination{
+#staging{
     text-align: center;
 }
