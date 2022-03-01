@@ -6,3 +6,6 @@ The location will generate a card that will then populate in the user's "Wishlis
 
 Entires are amendable and can be updated
 Form submission does not impact page refresh 
+
+![image](https://user-images.githubusercontent.com/93422213/156130916-76b74b63-95d4-4040-af4a-aa8de8dad3dc.png)
+
