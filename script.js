@@ -1,3 +1,5 @@
+import { initializeApp } from "firebase/app";
+
 //create eventListener for html lines 26-44
 document
   .querySelector("#details_form")
